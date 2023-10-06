@@ -1,0 +1,52 @@
+schema: workflow/2022.04
+name: "[Dictionary] /start"
+triggers:
+- id: hi_a1HeRlZ
+steps:
+- namespace: get_record_or_create
+  runtime: nodejs14.x
+  uses: data_stores-get-record-or-create@0.0.8
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+    key: members
+- namespace: add_update_record
+  runtime: nodejs14.x
+  uses: data_stores-add-update-record@0.0.8
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+    key: attempts
+    value: '0'
+- namespace: find_mentioned_member
+  runtime: nodejs14.x
+  uses: "./find_mentioned_member/entry.js"
+  props:
+    db:
+      storeId: ds_d8uMBg
+- namespace: generate_category_blocks
+  runtime: nodejs14.x
+  uses: "./generate_category_blocks/entry.js"
+- namespace: slack
+  runtime: nodejs14.x
+  uses: "./slack/entry.js"
+  props:
+    slack:
+      authProvisionId: apn_5dhYdbK
+- namespace: get_record_or_create_1
+  runtime: nodejs14.x
+  uses: data_stores-get-record-or-create@0.0.8
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+    key: prompts
+    addRecordIfNotFound: 'No'
+- namespace: slack_bot
+  runtime: nodejs14.x
+  uses: "./slack_bot/entry.js"
+  props:
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+    db:
+      storeId: ds_d8uMBg
+

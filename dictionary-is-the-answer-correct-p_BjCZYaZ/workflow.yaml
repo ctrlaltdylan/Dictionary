@@ -1,0 +1,57 @@
+schema: workflow/2022.04
+name: "[Dictionary] Is the answer correct?"
+inactive: true
+triggers:
+- id: dc_V1uY7qB
+steps:
+- namespace: get_thread_ts
+  runtime: nodejs14.x
+  uses: data_stores-get-record-or-create@0.0.8
+  _props_cursor: dyp_LWUGvKK
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+    key:
+      __lv:
+        label: thread_ts
+        value: thread_ts
+    addRecordIfNotFound: 'No'
+- namespace: is_message_in_thread
+  runtime: nodejs14.x
+  uses: "./is_message_in_thread/entry.js"
+- namespace: get_record_or_create_1
+  runtime: nodejs14.x
+  uses: data_stores-get-record-or-create@0.0.8
+  _props_cursor: dyp_1aUwqDz
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+    key:
+      __lv:
+        label: current_prompt
+        value: current_prompt
+    addRecordIfNotFound: 'No'
+- namespace: chat
+  runtime: nodejs14.x
+  uses: openai-chat@0.1.1
+  props:
+    openai:
+      authProvisionId: apn_arhBj8a
+    modelId: gpt-3.5-turbo
+    userMessage: |-
+      Please answer only in true or false without puncuation.
+
+      Are these two phrases describing the same thing?
+
+      "{{steps.get_record_or_create_1.$return_value}}" and "{{steps.trigger.event.text}}"
+    systemInstructions: You are a game host for a guessing game and are responsible
+      for predicting if the answer is close to the true answer.
+- namespace: slack_bot
+  runtime: nodejs14.x
+  uses: "./slack_bot/entry.js"
+  props:
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+    db:
+      storeId: ds_d8uMBg
+

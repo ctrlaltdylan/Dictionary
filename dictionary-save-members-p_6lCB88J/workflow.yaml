@@ -1,0 +1,14 @@
+schema: workflow/2022.04
+name: "[Dictionary] Save members"
+triggers:
+- id: hi_nlHXQDP
+steps:
+- namespace: slack
+  runtime: nodejs14.x
+  uses: "./slack/entry.js"
+  props:
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+    db:
+      storeId: ds_d8uMBg
+

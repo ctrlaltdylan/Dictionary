@@ -1,0 +1,38 @@
+schema: workflow/2022.04
+name: "[Dictionary] Interactive Events"
+triggers:
+- id: hi_6LHqQNP
+steps:
+- namespace: parse_json
+  runtime: nodejs14.x
+  uses: formatting-parse-json@0.0.1
+  props:
+    input: "{{steps.trigger.event.body.payload}}"
+- namespace: is_event_from_current_player
+  runtime: nodejs14.x
+  uses: "./is_event_from_current_player/entry.js"
+  props:
+    db:
+      storeId: ds_d8uMBg
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+- namespace: openai
+  runtime: nodejs14.x
+  uses: "./openai/entry.js"
+  props:
+    openai:
+      authProvisionId: apn_arhBj8a
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+- namespace: slack
+  runtime: nodejs14.x
+  uses: "./slack/entry.js"
+  props:
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+    db:
+      storeId: ds_d8uMBg
+- namespace: detect_event
+  runtime: nodejs14.x
+  uses: "./detect_event/entry.js"
+

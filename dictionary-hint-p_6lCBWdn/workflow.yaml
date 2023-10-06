@@ -1,0 +1,18 @@
+schema: workflow/2022.04
+name: "[Dictionary] /hint"
+triggers:
+- id: hi_G7H6BQX
+steps:
+- namespace: get_all_records
+  runtime: nodejs14.x
+  uses: data_stores-get-all-records@0.0.1
+  props:
+    dataStore:
+      storeId: ds_d8uMBg
+- namespace: slack_bot
+  runtime: nodejs14.x
+  uses: "./slack_bot/entry.js"
+  props:
+    slack_bot:
+      authProvisionId: apn_MGh1KxP
+
