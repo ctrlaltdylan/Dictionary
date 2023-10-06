@@ -3,12 +3,21 @@ name: "[Dictionary] /hint"
 triggers:
 - id: hi_G7H6BQX
 steps:
+- namespace: node_2
+  runtime: nodejs18.x
+  uses: "./node_2/entry.js"
 - namespace: get_all_records
   runtime: nodejs14.x
   uses: data_stores-get-all-records@0.0.1
   props:
     dataStore:
       storeId: ds_d8uMBg
+- namespace: node
+  runtime: nodejs18.x
+  uses: "./node/entry.js"
+- namespace: node_1
+  runtime: nodejs18.x
+  uses: "./node_1/entry.js"
 - namespace: slack_bot
   runtime: nodejs18.x
   uses: "./slack_bot/entry.js"
