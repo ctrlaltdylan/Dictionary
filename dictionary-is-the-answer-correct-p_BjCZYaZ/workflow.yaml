@@ -17,7 +17,7 @@ steps:
         value: thread_ts
     addRecordIfNotFound: 'No'
 - namespace: is_message_in_thread
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   uses: "./is_message_in_thread/entry.js"
 - namespace: get_record_or_create_1
   runtime: nodejs14.x
