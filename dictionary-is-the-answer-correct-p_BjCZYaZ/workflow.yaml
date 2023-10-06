@@ -1,6 +1,5 @@
 schema: workflow/2022.04
 name: "[Dictionary] Is the answer correct?"
-inactive: true
 triggers:
 - id: dc_V1uY7qB
 steps:
