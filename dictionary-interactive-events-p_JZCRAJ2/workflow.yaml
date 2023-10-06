@@ -1,5 +1,7 @@
 schema: workflow/2022.04
 name: "[Dictionary] Interactive Events"
+settings:
+  lambda_memory: 1792
 triggers:
 - id: hi_6LHqQNP
 steps:
