@@ -36,6 +36,7 @@ export default defineComponent({
 Hello! It's your turn to play _Dictionary_. \n\n 
 Try to use images generated from Dall-E to get your teammates to guess the keyword below. \n\n
 Your keyword is \`${phrase}\` \n\n 
+In the category ${category} \n\n
 And _don't_ use the keyword in your prompts! \n\n Also please give me a moment or two to generate your image. I can be slow sometimes sorry :) `
 			}
 		},
