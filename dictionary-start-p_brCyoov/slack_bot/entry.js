@@ -14,6 +14,7 @@ export default defineComponent({
     const selectedKeyword = prompts[Math.floor(Math.random() * prompts.length)];
 		const phrase = selectedKeyword.value;
 		const category = selectedKeyword.category;
+		const hint = selectedKeyword.hint
 
 		await this.db.set('current_prompt', phrase);
     
@@ -37,6 +38,7 @@ Hello! It's your turn to play _Dictionary_. \n\n
 Try to use images generated from Dall-E to get your teammates to guess the keyword below. \n\n
 Your keyword is \`${phrase}\` \n\n 
 In the category ${category} \n\n
+The hint is ${hint} \n\n
 And _don't_ use the keyword in your prompts! \n\n Also please give me a moment or two to generate your image. I can be slow sometimes sorry :) `
 			}
 		},
