@@ -8,7 +8,7 @@ export default defineComponent({
   async run({ steps, $ }) {
     const username = steps.trigger.event.body.text.replace('@', '');
 
-    const member = steps.get_record_or_create.$return_value.find((member) => member.name === username)
+    const member = steps.get_all_members.$return_value.find((member) => member.name === username)
 
 
     await this.db.set('current_player', member);

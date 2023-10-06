@@ -10,7 +10,7 @@ export default defineComponent({
 		}
   },
   async run({steps, $}) {
-    const prompts = steps.get_record_or_create_1.$return_value;
+    const prompts = steps.get_prompts.$return_value;
     const selectedKeyword = prompts[Math.floor(Math.random() * prompts.length)];
 		const phrase = selectedKeyword.value;
 		const category = selectedKeyword.category;
@@ -34,9 +34,9 @@ export default defineComponent({
 				"type": "mrkdwn",
 				"text": `
 Hello! It's your turn to play _Dictionary_. \n\n 
-Try to use images generated from Dall-e to get your teammates to guess the keyword below. \n\n
+Try to use images generated from Dall-E to get your teammates to guess the keyword below. \n\n
 Your keyword is \`${phrase}\` \n\n 
-And _don't*_ use the keyword in your prompts! `
+And _don't_ use the keyword in your prompts! \n\n Also please give me a moment or two to generate your image. I can be slow sometimes sorry :) `
 			}
 		},
 		{
