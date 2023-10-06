@@ -3,14 +3,15 @@ name: "[Dictionary] /start"
 triggers:
 - id: hi_a1HeRlZ
 steps:
-- namespace: get_record_or_create
+- namespace: get_all_members
   runtime: nodejs14.x
   uses: data_stores-get-record-or-create@0.0.8
+  _props_cursor: dyp_ZjUvd6p
   props:
     dataStore:
       storeId: ds_d8uMBg
     key: members
-- namespace: add_update_record
+- namespace: reset_attempts
   runtime: nodejs14.x
   uses: data_stores-add-update-record@0.0.8
   props:
@@ -19,7 +20,7 @@ steps:
     key: attempts
     value: '0'
 - namespace: find_mentioned_member
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   uses: "./find_mentioned_member/entry.js"
   props:
     db:
@@ -33,16 +34,17 @@ steps:
   props:
     slack:
       authProvisionId: apn_5dhYdbK
-- namespace: get_record_or_create_1
+- namespace: get_prompts
   runtime: nodejs14.x
   uses: data_stores-get-record-or-create@0.0.8
+  _props_cursor: dyp_VwUX82p
   props:
     dataStore:
       storeId: ds_d8uMBg
     key: prompts
     addRecordIfNotFound: 'No'
 - namespace: slack_bot
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   uses: "./slack_bot/entry.js"
   props:
     slack_bot:
