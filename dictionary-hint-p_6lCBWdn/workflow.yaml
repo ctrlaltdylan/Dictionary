@@ -10,7 +10,7 @@ steps:
     dataStore:
       storeId: ds_d8uMBg
 - namespace: slack_bot
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   uses: "./slack_bot/entry.js"
   props:
     slack_bot:
