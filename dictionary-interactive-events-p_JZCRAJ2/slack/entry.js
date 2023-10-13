@@ -38,7 +38,7 @@ Click *Choose this image* to choose the image to start the game!`
                 "text": steps.parse_json.$return_value.actions[0].value
               },
               "block_id": "image1",
-              "image_url": steps.openai.$return_value.data[0].url,
+              "image_url": steps.upload_image.$return_value.data.link,
               "alt_text": steps.parse_json.$return_value.actions[0].value
             },
 
@@ -52,7 +52,7 @@ Click *Choose this image* to choose the image to start the game!`
                     "text": "Choose this image",
                     "emoji": true
                   },
-                  "value": steps.openai.$return_value.data[0].url,
+                  "value": steps.upload_image.$return_value.data.link,
                   "action_id": "image_selection"
                 }
               ]

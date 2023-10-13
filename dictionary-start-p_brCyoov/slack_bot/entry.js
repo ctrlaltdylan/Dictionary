@@ -34,12 +34,18 @@ export default defineComponent({
 			"text": {
 				"type": "mrkdwn",
 				"text": `
-Hello! It's your turn to play _Dictionary_. \n\n 
-Try to use images generated from Dall-E to get your teammates to guess the keyword below. \n\n
-Your keyword is \`${phrase}\` \n\n 
-In the category ${category} \n\n
-The hint is ${hint} \n\n
-And _don't_ use the keyword in your prompts! \n\n Also please give me a moment or two to generate your image. I can be slow sometimes sorry :) `
+Hello! It's your turn to play *Dictionary*. \n\n 
+Your keyword is \`${phrase}\` in the category *${category}* \n\n 
+
+Use the text input below to guide Dall-E to make an image close to describing "\`${phrase}\`" as you can. \n\n
+
+Then select the image that you think is closest, and it will be posted to \`#social-hour\` for everyone to guess.
+
+* Try to think visualy, not literally
+* Try to combine nouns
+* If all else fails, the host will drop a hint in the thread. So don't worry if it's not perfect.
+
+And _don't_ use the keyword in your prompts! \n\n Please give me up to a minute to generate your image. I can be slow sometimes sorry :) `
 			}
 		},
 		{
