@@ -26,8 +26,20 @@ steps:
       authProvisionId: apn_arhBj8a
     slack_bot:
       authProvisionId: apn_MGh1KxP
+- namespace: node
+  runtime: nodejs18.x
+  uses: "./node/entry.js"
+  props:
+    imageUrl: "{{steps.openai.$return_value.data[0].url}}"
+- namespace: upload_image
+  runtime: nodejs18.x
+  uses: imgur-upload-image@0.1.0
+  props:
+    imgur:
+      authProvisionId: apn_kVha89y
+    image: "{{steps.node.$return_value}}"
 - namespace: slack
-  runtime: nodejs14.x
+  runtime: nodejs18.x
   uses: "./slack/entry.js"
   props:
     slack_bot:
